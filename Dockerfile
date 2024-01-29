@@ -4,7 +4,8 @@ WORKDIR /var/www/html
 
 RUN a2enmod rewrite
 
-RUN docker-php-ext-install pdo pdo_mysql bcmath
+RUN apt-get update && apt-get install -y libzip-dev zip
+RUN docker-php-ext-install pdo pdo_mysql bcmath zip
 
 COPY . .
 RUN chmod -R 775 storage bootstrap/cache
