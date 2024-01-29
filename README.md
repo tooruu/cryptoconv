@@ -27,13 +27,14 @@ Copy the example environment file and adjust it according to your needs:
 
 ### 4. Install Dependencies, Run Migrations, and Set Application Key
 
-_Due to how Docker ~~just works~~, we have to run this **after** `up`ing the container:_
+Due to how Docker ~~just works~~, we have to run these commands **after** `up`ing the container.
+You only need to run this step once.
 
 ```bash
-docker-compose exec app composer update && \
-    composer install && \
-    php artisan migrate --seed --force && \
-    php artisan key:generate
+docker-compose exec app composer update
+docker-compose exec app composer install
+docker-compose exec app php artisan migrate --seed --force
+docker-compose exec app php artisan key:generate
 ```
 
 ### 5. Access the Application
