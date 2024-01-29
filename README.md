@@ -25,20 +25,23 @@ Copy the example environment file and adjust it according to your needs:
 
 `docker-compose up -d`
 
-### 4. Install Dependencies and Run Migrations
+### 4. Install Dependencies, Run Migrations, and Set Application Key
 
-_This is needed to generate & populate currencies table_
+_Due to how Docker ~~just works~~, we have to run this **after** `up`ing the container:_
 
-`docker-compose exec app composer update && composer install`
-
-`docker-compose exec app php artisan migrate --seed --force`
+```bash
+docker-compose exec app composer update && \
+    composer install && \
+    php artisan migrate --seed --force && \
+    php artisan key:generate
+```
 
 ### 5. Access the Application
 
-Once the containers are running, you can access your Laravel application at http://localhost/public.
+Once the container is running, you can access the application at http://localhost/public.
 
 ## Stopping the Application
 
-To stop the Docker containers, run:
+To stop the Docker container, run:
 
 `docker-compose down`
