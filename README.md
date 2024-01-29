@@ -25,9 +25,11 @@ Copy the example environment file and adjust it according to your needs:
 
 `docker-compose up -d`
 
-### 4. Run Migrations
+### 4. Install Dependencies and Run Migrations
 
 _This is needed to generate & populate currencies table_
+
+`docker-compose exec app composer update && composer install`
 
 `docker-compose exec app php artisan migrate --seed --force`
 
